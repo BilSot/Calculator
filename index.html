@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Calculator</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link href="calc.css" rel="stylesheet">
+	</head>
+	<body>
+		<button id="changeBckground">Pink background</button>
+		<div id="calc">
+			<div id="memorySign">M</div>
+			<div class = "row">
+				<input type="text" id="calcScreen" maxlength="15">
+			</div>
+			
+			<div class="row">
+				<button class="applyToAllButtons memoryButtons" id="memoryPlus">M+</button>
+				<button class="applyToAllButtons memoryButtons" id="memoryMinus">M-</button>
+				<button class="applyToAllButtons memoryButtons" id="memoryRecall">MR</button>
+				<button class="applyToAllButtons memoryButtons" id="memoryClear">MC</button>
+			</div>
+			
+			<div class="row">
+				<button class="applyToAllButtons basicMathButtons" id="negationButton"> + / - </button>
+				<button class="applyToAllButtons eraseButton" id="backspaceButton">Backspace</button>
+				<button class="applyToAllButtons eraseButton" id="cButton">C</button>
+			</div>
+			
+			<div class="row">
+				<button class="applyToAllButtons unaryButtons">x^2</button>
+				<button class="applyToAllButtons unaryButtons">&radic;</button>
+				<button class="applyToAllButtons unaryButtons">1/x</button>
+				<button class="applyToAllButtons mathOperators basicMathButtons">/</button>
+			</div>
+			
+			<div class="row">
+				<button class="applyToAllButtons numbers">7</button>
+				<button class="applyToAllButtons numbers">8</button>
+				<button class="applyToAllButtons numbers">9</button>
+				<button class="applyToAllButtons mathOperators basicMathButtons">*</button>
+			</div>
+			
+			<div class="row">
+				<button class="applyToAllButtons numbers">4</button>
+				<button class="applyToAllButtons numbers">5</button>
+				<button class="applyToAllButtons numbers">6</button>
+				<button class="applyToAllButtons mathOperators basicMathButtons">-</button>				
+			</div>
+			
+			<div id="table">
+				<div class="shortenedRow">
+					<button class="applyToAllButtons numbers">1</button>
+					<button class="applyToAllButtons numbers">2</button>
+					<button class="applyToAllButtons numbers">3</button>	
+				</div>
+
+				<div id="additionSignRow">				
+					<button class="applyToAllButtons mathOperators" id="additionButton">+</button>	
+				</div>
+
+				<div class="shortenedRow">
+					<button class="applyToAllButtons numbers">0</button>
+					<button class="applyToAllButtons" id="decimalSign">.</button>
+					<button class="applyToAllButtons" id="equationSign">=</button>
+				</div>
+			</div>
+			
+		</div>
+		
+		<script src="jquery-2.1.4.min.js"></script>
+		<script src="calcScript.js"></script>
+	</body>
+</html>
