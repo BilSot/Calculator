@@ -1,6 +1,8 @@
 var pressedNumber;
-var operand1, operand2, memoryValue = 0;
+var operand1, operand2;
+var memoryValue = 0;
 var operator, decimal, display;
+var hasResult = false;
 //var messageVar = 'This text should be alerted.\n\
 //But it is not';
 //alert("1"+2+3);
@@ -76,7 +78,7 @@ $(function () {
 function eraseAll() {
 	$("#calcScreen").val('0');
 
-	operand1 = operand2 = 0;
+	operand1 = operand2 = null;
 	operator = null;
 	display = 0;
 
@@ -84,6 +86,10 @@ function eraseAll() {
 }
 
 function eraseLastChar() {
+	if (hasResult) {
+		//play some error sound
+		return;
+	}
 
 	if (operand1.length > 1 && !operator && !operand2) {
 		operand1 = operand1.slice(0, -1);
@@ -131,8 +137,9 @@ function operatorClicked(newOperator) {
 
 function addDecimalPoint() {
 	if (!operator) {
-		if(!operand1){
+		if(!operand1 || hasResult){
 			operand1 = 0 + ".";
+			hasResult = false;
 		}
 		operand1 = checkForDecimalPoint(operand1);
 		display = operand1;
@@ -156,6 +163,13 @@ function checkForDecimalPoint(number){
 function numberClicked(pressedNumber) {
 
 	if (!operator) {
+		if (hasResult) {
+			operand1 = pressedNumber + "";
+			hasResult = false;
+			display = operand1;
+			updateDisplay();
+			return;
+		}
 		if (pressedNumber == 0 && (operand1 == null || operand1 == 0)) {
 			return;
 		}
@@ -167,12 +181,15 @@ function numberClicked(pressedNumber) {
 		}
 		display = operand1;
 	} else {
-		if (pressedNumber == 0 && operand2 == 0) {
+		if (pressedNumber == 0 && operand2 == null) {
 			operand2 = 0;
-		} else if (operand2 != null || operand2 != 0) {
+		} else if (pressedNumber == 0 && operand2 != null) {
+			operand2 += 0;
+		} 
+		else if (operand2 == null ) {
 			operand2 = pressedNumber;
 		}
-		else {
+		else{
 			operand2 += pressedNumber;
 		}
 		display = operand1 + operator + operand2;
@@ -231,8 +248,9 @@ function calculateBinaryResult() {
 	display = result + '';
 	updateDisplay();
 
-	operand1 = 0;
-	operand2 = 0;
+	hasResult = true;
+	operand1 = display;
+	operand2 = null;
 	operator = null;
 }
 
@@ -252,8 +270,9 @@ function checkUnaryOperator() {
 	display = result + '';
 	updateDisplay();
 
-	operand1 = 0;
-	operand2 = 0;
+	hasResult = true;
+	operand1 = display;
+	operand2 = null;
 	operator = null;
 }
 
