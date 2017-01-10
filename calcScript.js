@@ -3,6 +3,7 @@ var operand1, operand2;
 var memoryValue = 0;
 var operator, decimal, display;
 var hasResult = false;
+var audio = new Audio('beep.mp3');
 //var messageVar = 'This text should be alerted.\n\
 //But it is not';
 //alert("1"+2+3);
@@ -88,6 +89,7 @@ function eraseAll() {
 function eraseLastChar() {
 	if (hasResult) {
 		//play some error sound
+		audio.play();
 		return;
 	}
 
